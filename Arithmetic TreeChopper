@@ -1,12 +1,12 @@
 package org.Arithmetic.Godchop;
  
-import org.brightryan.brightchop.gui.GUI;
-import org.brightryan.brightchop.nodes.Banking;
-import org.brightryan.brightchop.nodes.Chop;
-import org.brightryan.brightchop.nodes.Dropping;
-import org.brightryan.brightchop.nodes.WalkToBank;
-import org.brightryan.brightchop.nodes.WalkToTree;
-import org.brightryan.brightchop.paint.Paint;
+import org.Arithmetic.Godchop.gui.GUI;
+import org.Arithmetic.Godchop.nodes.Banking;
+import org.Arithmetic.Godchop.nodes.Chop;
+import org.Arithmetic.Godchop.nodes.Dropping;
+import org.Arithmetic.Godchop.nodes.WalkToBank;
+import org.Arithmetic.Godchop.nodes.WalkToTree;
+import org.Arithmetic.GodChop.paint.Paint;
 import org.powerbot.core.script.ActiveScript;
 import org.powerbot.core.script.job.state.Node;
 import org.powerbot.core.script.job.state.Tree;
