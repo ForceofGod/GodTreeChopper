@@ -1,0 +1,47 @@
+package org.Arithmetic.Godchop.data;
+ 
+import org.powerbot.game.api.wrappers.Tile;
+ 
+ 
+public enum Tree {
+       
+        WILLOW(new int[]{58006, 38627, 38616}, 1521, new Tile(3093, 3244, 0), new Tile(3088, 3235, 0)),
+        OAK(new int[]{38731, 38731}, 1511, new Tile(3093, 3244, 0), new Tile(3099, 3243, 0)),
+        NORMAL(new int[]{38785, 38760}, 1519, new Tile(3093, 3244, 0), new Tile(3110, 3241, 0));
+       
+        private final int[] ids;
+        private final int log;
+        private final Tile bank;
+        private final Tile trees;
+       
+        Tree(int[] ids, int log, Tile bank, Tile trees){
+                this.ids = ids;
+                this.log = log;
+                this.bank = bank;
+                this.trees = trees;
+        }
+       
+        public Tile getTrees(){
+                return trees;
+        }
+       
+        public int[] getIds(){
+                return ids;
+        }
+ 
+        public int getLog() {
+                return log;
+        }
+       
+        public Tile getBank(){
+                return bank;
+        }
+       
+        @Override
+        public String toString() {
+                String name = super.toString();
+                String f = Character.toString(name.charAt(0));
+                String sub = name.substring(1, name.length());
+                return f + sub.toLowerCase();
+        }
+}
