@@ -1,4 +1,4 @@
-package org.brightryan.Godchop;
+package org.Arithmetic.Godchop;
  
 import org.brightryan.brightchop.gui.GUI;
 import org.brightryan.brightchop.nodes.Banking;
