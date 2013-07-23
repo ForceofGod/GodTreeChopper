@@ -27,7 +27,7 @@ public class Chop extends Node {
                 }
                 if (!tree.isOnScreen()) {
                         Walking.walk(tree.getLocation());
-                        while (BrightChop.t.isRunning()) {
+                        while (GodChop.t.isRunning()) {
                                 Task.sleep(200, 300);
                         }
                         return;
