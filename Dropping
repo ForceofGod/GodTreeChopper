@@ -1,0 +1,26 @@
+package org.Arithmetic.Godchop.nodes;
+ 
+import org.Arithmetic.Godchop.BrightChop;
+import org.powerbot.core.script.job.state.Node;
+import org.powerbot.game.api.methods.tab.Inventory;
+import org.powerbot.game.api.wrappers.node.Item;
+ 
+public class Dropping extends Node {
+       
+        public boolean activate() {
+                return Inventory.isFull() &&GodChop.task == 3;
+        }
+ 
+        @Override
+        public void execute() {
+               GodChop.status = "Dropping";
+                for (final Item i : Inventory.getItems()) {
+                        for (int j : GodChop.LOG_ID) {
+                                if (i.getId() == j) {
+                                        if (i.getWidgetChild().interact("Drop")) {
+                                                }
+                                        }
+                                }
+                        }
+                }
+        }
