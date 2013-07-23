@@ -1,0 +1,75 @@
+package org.brightryan.Godchop;
+ 
+import org.brightryan.brightchop.gui.GUI;
+import org.brightryan.brightchop.nodes.Banking;
+import org.brightryan.brightchop.nodes.Chop;
+import org.brightryan.brightchop.nodes.Dropping;
+import org.brightryan.brightchop.nodes.WalkToBank;
+import org.brightryan.brightchop.nodes.WalkToTree;
+import org.brightryan.brightchop.paint.Paint;
+import org.powerbot.core.script.ActiveScript;
+import org.powerbot.core.script.job.state.Node;
+import org.powerbot.core.script.job.state.Tree;
+import org.powerbot.game.api.Manifest;
+import org.powerbot.game.api.methods.interactive.Players;
+import org.powerbot.game.api.util.Random;
+import org.powerbot.game.api.util.Timer;
+import org.powerbot.game.bot.Context;
+ 
+@Manifest(authors = { "Arithmetic" }, description = "Kills Willow Trees", name = "GodChop")
+public class GodChopper extends ActiveScript {                                                 
+ 
+        private static final GUI g = new GUI();
+        public static boolean isStarted = false;
+        private static Tree container;
+        private static final Paint paint = new Paint();
+        public static int[] treeToChop = { 0 };
+       
+        public static Tree tree = null;
+       
+        public static Timer t = new Timer(3000);
+       
+        public static final int[] HATCHET_ID = { 6739, 1355, 1357, 1351, 1349, 1353, 1359 };
+        public static final int[] LOG_ID = { 1521, 1511, 1519, 1515 };
+       
+        public static int task = 0;
+       
+        public static String status;
+ 
+        public void onStart() {
+                Context.resolve().getEventManager().addListener(paint);
+                g.setVisible(true);
+                Node[] jobs = {   new WalkToTree(), new WalkToBank(), new Chop(), new Banking(), new Dropping() };
+                container = new Tree(jobs);
+ 
+                System.out.println("Welcome to GodChopper!");
+ 
+        }
+ 
+        public void onStop() {
+                Context.resolve().getEventManager().removeListener(paint);
+        }
+ 
+        @Override
+        public int loop() {
+                while (!isStarted) {
+                        sleep(500);
+                }
+               
+                if(Players.getLocal().isIdle()){
+                        status = "Waiting";
+                }
+               
+                if (container != null) {
+                        final Node job = container.state();
+                        if (job != null) {
+                                container.set(job);
+                                getContainer().submit(job);
+                                job.join();
+ 
+                        }
+                }
+                return Random.nextInt(15, 25);
+        }
+ 
+}
