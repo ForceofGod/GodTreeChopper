@@ -19,7 +19,7 @@ public class Chop extends Node {
         @Override
         public void execute() {
                 BrightChop.status = "Chopping";
-                SceneObject tree = SceneEntities.getNearest(BrightChop.treeToChop);
+                SceneObject tree = SceneEntities.getNearest(GodChop.treeToChop);
  
                 if (tree == null) {
                         System.out.println("We cannot find the tree!");
