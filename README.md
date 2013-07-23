@@ -1,0 +1,120 @@
+package org.Aritmetic.Godchop.paint;
+ 
+import java.awt.*;
+ 
+import javax.imageio.ImageIO;
+ 
+import java.io.IOException;
+import java.net.URL;
+ 
+ 
+import org.Arithmetic.Godchop.GodChop;
+import org.powerbot.core.event.events.MessageEvent;
+import org.powerbot.core.event.listeners.MessageListener;
+import org.powerbot.core.event.listeners.PaintListener;
+import org.powerbot.game.api.methods.input.Mouse;
+import org.powerbot.game.api.methods.tab.Skills;
+import org.powerbot.game.api.util.SkillData;
+import org.powerbot.game.api.util.SkillData.Rate;
+import org.powerbot.game.api.util.Timer;
+ 
+public class Paint implements PaintListener, MessageListener {
+ 
+        private static final int startxp = Skills.getExperience(Skills.WOODCUTTING);
+        private static int expGained;
+        private static int chopped = 0;
+        private static final Timer timer = new Timer(0);
+        private static final SkillData data = new SkillData();
+        private static int currentLevel;
+        private static int levelsGained;
+        public int startLevel;
+       
+       
+        public void onStart(){
+                startLevel = Skills.getLevel(Skills.WOODCUTTING);
+        }
+ 
+        @Override
+        public void messageReceived(MessageEvent e) {
+                String svrmsg = e.getMessage();
+                if (svrmsg.contains("You get some")) {
+                        chopped++;
+                }
+        }
+ 
+        private Image getImage(String url) {
+                try {
+                        return ImageIO.read(new URL(url));
+                } catch (IOException e) {
+                        return null;
+                }
+        }
+ 
+        private final Color color1 = new Color(52, 52, 52);
+        private final Color color2 = new Color(0, 0, 0);
+        private final Color color3 = new Color(255, 255, 255);
+        private final Color color4 = new Color(180, 180, 180);
+        private final Color color5 = new Color(255, 255, 255, 198);
+        private final Color color6 = new Color(210, 210, 210);
+ 
+        private final BasicStroke stroke1 = new BasicStroke(1);
+ 
+        private final Font font1 = new Font("Arial", 0, 20);
+ 
+        private final Image img1 = getImage("http://i.imgur.com/jkqmlYS.png");
+        private final Image img2 = getImage("http://i.imgur.com/spueSln.png");
+        private final Image img3 = getImage("http://i.imgur.com/dZyCpBy.png");
+        private final Image img4 = getImage("http://imgur.com/iKG9Mc5.png");
+        private final Image img5 = getImage("http://imgur.com/p8nwDbB.png");
+        private final Image img6 = getImage("http://www.zybez.net/img/genimg/gettingstart/stats.gif");
+       
+        public void onRepaint(Graphics g1) {
+                Graphics2D g = (Graphics2D) g1;
+                currentLevel = Skills.getLevel(Skills.WOODCUTTING);
+                levelsGained = Skills.getLevel(Skills.WOODCUTTING) - startLevel;
+                expGained = Skills.getExperience(Skills.WOODCUTTING) - startxp;
+                g.drawImage(img1, 1, 394, null);
+                final Point p = Mouse.getLocation();
+                g.setColor(Mouse.isPressed() ? Color.BLUE : Color.GREEN);
+                g.drawOval(p.x - 3, p.y - 3, 10, 10);
+                g.drawRect(p.x - 3, p.y - 3, 10, 10);
+                g.setColor(Mouse.isPressed() ? Color.PINK : Color.ORANGE);{
+                        g.drawOval(p.x - 8, p.y - 8, 20, 20);
+                                }//nope:/
+                g.setColor(Mouse.isPressed() ? Color.BLUE : Color.GREEN);
+                g.setColor(color1);
+                g.fillRect(7, 395, 490, 112);
+                g.setColor(color2);
+                g.setStroke(stroke1);
+                g.drawRect(7, 395, 490, 112);
+                g.drawImage(img1, 7, 451, null);
+                g.drawImage(img2, 11, 424, null);
+                g.drawImage(img3, 7, 397, null);
+                g.setColor(color3);
+                g.drawLine(8, 479, 279, 479);
+                g.drawLine(8, 451, 279, 451);
+                g.drawLine(7, 423, 279, 423);
+                g.drawLine(249, 395, 249, 507);
+                g.setColor(color4);
+                g.fillRect(254, 456, 238, 46);
+                g.setColor(color3);
+                g.drawRect(254, 456, 238, 46);
+                g.drawImage(img4, 279, 423, null);
+                g.drawLine(280, 423, 497, 423);
+                g.drawImage(img5, 341, 441, null);
+                g.setFont(font1);
+                g.setColor(color5);
+                g.drawString(String.format("Time Running: %s", timer.toElapsedString()), 38, 417);
+                g.setColor(color3);
+                g.drawLine(280, 451, 497, 451);
+                g.setColor(color5);
+                g.drawString("Logs Chopped: " + chopped, 38, 446);
+                g.drawString("XP Gained: " + expGained, 38, 473);
+                g.drawImage(img6, 4, 477, null);
+                g.drawString("XP/Hour: " + data.experience(Rate.HOUR, Skills.WOODCUTTING), 38, 501);
+                g.setColor(color6);
+                g.drawString("Status: " + BrightChop.status, 253, 416);
+                g.drawString("Current Level: " + (currentLevel) + "(" + levelsGained + ")" ,  254, 445);
+        }
+ 
+}
