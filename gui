@@ -48,7 +48,7 @@ public class GUI extends JFrame {
                 }
                
                 this.dispose();
-                BrightChop.isStarted = true;
+                GodChop.isStarted = true;
         }
  
         private void initComponents() {
