@@ -113,7 +113,7 @@ public class Paint implements PaintListener, MessageListener {
                 g.drawImage(img6, 4, 477, null);
                 g.drawString("XP/Hour: " + data.experience(Rate.HOUR, Skills.WOODCUTTING), 38, 501);
                 g.setColor(color6);
-                g.drawString("Status: " + BrightChop.status, 253, 416);
+                g.drawString("Status: " + GodChop.status, 253, 416);
                 g.drawString("Current Level: " + (currentLevel) + "(" + levelsGained + ")" ,  254, 445);
         }
  
