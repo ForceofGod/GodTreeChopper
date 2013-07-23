@@ -1,6 +1,6 @@
 package org.Arithmetic.Godchop.nodes;
  
-import org.Arithmetic.Godchop.BrightChop;
+import org.Arithmetic.Godchop.GodChop;
 import org.powerbot.core.script.job.state.Node;
 import org.powerbot.game.api.methods.tab.Inventory;
 import org.powerbot.game.api.wrappers.node.Item;
