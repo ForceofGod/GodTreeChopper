@@ -1,0 +1,29 @@
+package org.Arithmetic.Godchop.nodes;
+ 
+import org.Arithmetic.Godchop.GodChop;
+import org.powerbot.core.script.job.Task;
+import org.powerbot.core.script.job.state.Node;
+import org.powerbot.game.api.methods.tab.Inventory;
+import org.powerbot.game.api.methods.widget.Bank;
+ 
+public class Banking extends Node {
+ 
+        @Override
+        public boolean activate() {
+                return Inventory.isFull() && GodChop.task == 2;
+        }
+ 
+        @Override
+        public void execute() {
+                BrightChop.status = "Banking";
+                if (Bank.open()) {
+                        for (int i : BrightChop.LOG_ID) {
+                                Bank.deposit(i, 0);
+                                while (Inventory.contains(i)) {
+                                        Task.sleep(300, 400);
+                                }
+                        }
+                        Bank.close();
+                }
+        }
+}
