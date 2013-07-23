@@ -1,1 +1,194 @@
-y
+package org.Arithmetic.Godchop.gui;
+ 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+ 
+import javax.swing.*;
+ 
+import org.Arithmetic.Godchop.GodChop;
+import org.Arithmetic.Godchop.data.Tree;
+ 
+ 
+public class GUI extends JFrame {
+ 
+        /**
+         *
+         */
+        private static final long serialVersionUID = 1L;
+ 
+        public GUI() {
+                initComponents();
+        }
+       
+        public static void main(String[] args) {
+                new GUI().setVisible(true);
+        }
+ 
+        private void startActionPerformed(ActionEvent e) {
+                String dropbank = dropOrBank.getSelectedItem().toString();
+                String chop = treeBox.getSelectedItem().toString();
+               
+               
+                if(chop.equals("Willow")){
+                        GodChop.treeToChop = Tree.WILLOW.getIds();
+                }
+                if(chop.equals("Oak")){
+                      GodChop.treeToChop = Tree.OAK.getIds();
+                }
+                if(chop.equals("Normal")){
+                        GodChop.treeToChop = Tree.NORMAL.getIds();
+                }
+ 
+               
+                if (dropbank.equals("Bank")) {
+                       GodChop.task = 2;
+                } else {
+                       GodChop.task = 3;
+                }
+               
+                this.dispose();
+                BrightChop.isStarted = true;
+        }
+ 
+        private void initComponents() {
+                title = new JLabel();
+                dropOrBank = new JComboBox<>();
+                label2 = new JLabel();
+                start = new JButton();
+                label1 = new JLabel();
+                treeBox = new JComboBox<Tree>();
+ 
+ 
+                Container contentPane = getContentPane();
+ 
+ 
+                title.setText("GodChopper");
+                title.setFont(new Font("Tahoma", Font.BOLD, 22));
+ 
+ 
+                dropOrBank.setModel(new DefaultComboBoxModel<>(new String[] { "Bank",
+                                "Drop" }));
+ 
+ 
+                label2.setText("Bank or Bank: ");
+ 
+ 
+                start.setText("START!");
+                start.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                startActionPerformed(e);
+                        }
+                });
+ 
+ 
+                label1.setText("Type of Tree:");
+ 
+ 
+                treeBox.setModel(new DefaultComboBoxModel<>(
+                                Tree.values()
+                ));
+ 
+                GroupLayout contentPaneLayout = new GroupLayout(contentPane);
+                contentPane.setLayout(contentPaneLayout);
+                contentPaneLayout
+                                .setHorizontalGroup(contentPaneLayout
+                                                .createParallelGroup()
+                                                .addGroup(
+                                                                contentPaneLayout
+                                                                                .createSequentialGroup()
+                                                                                .addGroup(
+                                                                                                contentPaneLayout
+                                                                                                                .createParallelGroup()
+                                                                                                                .addGroup(
+                                                                                                                                contentPaneLayout
+                                                                                                                                                .createSequentialGroup()
+                                                                                                                                                .addContainerGap()
+                                                                                                                                                .addComponent(
+                                                                                                                                                                label2)
+                                                                                                                                                .addPreferredGap(
+                                                                                                                                                                LayoutStyle.ComponentPlacement.RELATED)
+                                                                                                                                                .addComponent(
+                                                                                                                                                                dropOrBank,
+                                                                                                                                                                GroupLayout.PREFERRED_SIZE,
+                                                                                                                                                                GroupLayout.DEFAULT_SIZE,
+                                                                                                                                                                GroupLayout.PREFERRED_SIZE))
+                                                                                                                .addGroup(
+                                                                                                                                contentPaneLayout
+                                                                                                                                                .createSequentialGroup()
+                                                                                                                                                .addGap(20,
+                                                                                                                                                                20,
+                                                                                                                                                                20)
+                                                                                                                                                .addComponent(
+                                                                                                                                                                title))
+                                                                                                                .addGroup(
+                                                                                                                                contentPaneLayout
+                                                                                                                                                .createSequentialGroup()
+                                                                                                                                                .addContainerGap()
+                                                                                                                                                .addComponent(
+                                                                                                                                                                label1)
+                                                                                                                                                .addPreferredGap(
+                                                                                                                                                                LayoutStyle.ComponentPlacement.RELATED)
+                                                                                                                                                .addComponent(
+                                                                                                                                                                treeBox,
+                                                                                                                                                                GroupLayout.PREFERRED_SIZE,
+                                                                                                                                                                GroupLayout.DEFAULT_SIZE,
+                                                                                                                                                                GroupLayout.PREFERRED_SIZE))
+                                                                                                                .addGroup(
+                                                                                                                                contentPaneLayout
+                                                                                                                                                .createSequentialGroup()
+                                                                                                                                                .addGap(50,
+                                                                                                                                                                50,
+                                                                                                                                                                50)
+                                                                                                                                                .addComponent(
+                                                                                                                                                                start)))
+                                                                                .addContainerGap(7, Short.MAX_VALUE)));
+                contentPaneLayout
+                                .setVerticalGroup(contentPaneLayout
+                                                .createParallelGroup()
+                                                .addGroup(
+                                                                contentPaneLayout
+                                                                                .createSequentialGroup()
+                                                                                .addContainerGap()
+                                                                                .addComponent(title,
+                                                                                                GroupLayout.PREFERRED_SIZE, 38,
+                                                                                                GroupLayout.PREFERRED_SIZE)
+                                                                                .addPreferredGap(
+                                                                                                LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addGroup(
+                                                                                                contentPaneLayout
+                                                                                                                .createParallelGroup(
+                                                                                                                                GroupLayout.Alignment.BASELINE)
+                                                                                                                .addComponent(label2)
+                                                                                                                .addComponent(
+                                                                                                                                dropOrBank,
+                                                                                                                                GroupLayout.PREFERRED_SIZE,
+                                                                                                                                GroupLayout.DEFAULT_SIZE,
+                                                                                                                                GroupLayout.PREFERRED_SIZE))
+                                                                                .addPreferredGap(
+                                                                                                LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                                .addGroup(
+                                                                                                contentPaneLayout
+                                                                                                                .createParallelGroup(
+                                                                                                                                GroupLayout.Alignment.BASELINE)
+                                                                                                                .addComponent(label1)
+                                                                                                                .addComponent(
+                                                                                                                                treeBox,
+                                                                                                                                GroupLayout.PREFERRED_SIZE,
+                                                                                                                                GroupLayout.DEFAULT_SIZE,
+                                                                                                                                GroupLayout.PREFERRED_SIZE))
+                                                                                .addPreferredGap(
+                                                                                                LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addComponent(start)
+                                                                                .addContainerGap(4, Short.MAX_VALUE)));
+                pack();
+                setLocationRelativeTo(getOwner());
+        }
+        private JLabel title;
+        private JComboBox<String> dropOrBank;
+        private JLabel label2;
+        private JButton start;
+        private JLabel label1;
+        private JComboBox<Tree> treeBox;
+}
