@@ -15,9 +15,9 @@ public class Banking extends Node {
  
         @Override
         public void execute() {
-                BrightChop.status = "Banking";
+               GodChop.status = "Banking";
                 if (Bank.open()) {
-                        for (int i : BrightChop.LOG_ID) {
+                        for (int i : GodChop.LOG_ID) {
                                 Bank.deposit(i, 0);
                                 while (Inventory.contains(i)) {
                                         Task.sleep(300, 400);
