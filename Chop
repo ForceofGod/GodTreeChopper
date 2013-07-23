@@ -34,7 +34,7 @@ public class Chop extends Node {
                 }
                 if (Players.getLocal().isIdle()) {
                         tree.interact("Chop");
-                        while (BrightChop.t.isRunning()) {
+                        while (GodChop.t.isRunning()) {
                                 Task.sleep(200, 300);
                         }
                 }
